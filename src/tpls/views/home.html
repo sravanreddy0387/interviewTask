@@ -1,0 +1,20 @@
+
+<div class="progress" ng-repeat="bar in data.bars track by $index">
+    <div class="progress-bar"  id="progress{{$index+1}}" role="progressbar"  style="width:{{bar}}%" ng-class="bar>100 ? 'progress-bar-red':'progress-bar-normal'" >
+     
+    </div>
+    <span class="text-span">{{bar}}%</span>
+ </div>
+
+
+  <select class="select-box"  ng-model="selected"> 
+  	<option ng-repeat="bar in data.bars track by $index" value="{{$index}}">#progress{{$index+1}}</option> 	
+  </select>
+  <div class="button-div">
+  		<button  ng-repeat="btn in data.buttons | orderBy  track by $index " class="button" ng-click="progessTheBar(btn);">{{btn}}%</button>
+  		
+  </div>
+  
+
+
+<!-- ng-class="y>70 ? 'progress-bar-danger':'progress-bar-info'" -->
