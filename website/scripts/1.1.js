@@ -33866,7 +33866,7 @@ webpackJsonp([1],[
 	    ngSanitize = __webpack_require__(18),
 	    uiRouter = __webpack_require__(20),
 	    mCtrls = __webpack_require__(21),
-	    mServices = __webpack_require__(31);
+	    mServices = __webpack_require__(27);
 
 
 	/**
@@ -40196,28 +40196,32 @@ webpackJsonp([1],[
 
 	mCtrls.controller('MyCtrl', ["$scope", "getData", function ($scope, getData) {
 	    $scope.data = {};
+	    $scope.data.percentage = [];
+
+	    function calcBarPercentage(val, limit) {
+	        return Math.round((val / limit) * 100, 2);
+	    }
 	    getData.getApiData().then(function (data) {
 	        $scope.data = data.data;
+	        for (var i = 0; i < $scope.data.bars.length; i++) {
+	            $scope.data.percentage[i] = calcBarPercentage($scope.data.bars[i], $scope.data.limit);
+	        }
 	    });
 	    $scope.selected = '0';
 	    $scope.progessTheBar = function (val) {
-	        $scope.data.bars[$scope.selected] = $scope.data.bars[$scope.selected] + val;
-	        $scope.data.bars[$scope.selected] <= 0 ? ($scope.data.bars[$scope.selected] = 0) : ($scope.data.bars[$scope.selected] + val);
+	        $scope.data.percentage[$scope.selected] = $scope.data.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit);
+	        $scope.data.percentage[$scope.selected] <= 0 ? ($scope.data.percentage[$scope.selected] = 0) : ($scope.data.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit));
 	    };
 	}]);
 
 
 /***/ }),
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var load = __webpack_require__(32);
+	var load = __webpack_require__(28);
 
 	load.keys().forEach(load);
 
@@ -40225,11 +40229,11 @@ webpackJsonp([1],[
 
 
 /***/ }),
-/* 32 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./templateFactory.js": 33
+		"./templateFactory.js": 29
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -40242,16 +40246,16 @@ webpackJsonp([1],[
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 32;
+	webpackContext.id = 28;
 
 
 /***/ }),
-/* 33 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var mServices = __webpack_require__(34);
+	var mServices = __webpack_require__(30);
 
 	mServices.factory('templateFactory', function () {
 	    return {
@@ -40261,7 +40265,7 @@ webpackJsonp([1],[
 
 
 /***/ }),
-/* 34 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
