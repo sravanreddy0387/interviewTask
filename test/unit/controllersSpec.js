@@ -10,7 +10,7 @@ describe('Controllers', function() {
     describe('MyCtrl', function() {
         var $scope;
         beforeEach(angular.mock.module(mCtrls));
-        beforeEach(inject(function($rootScope, $controller,mServices) {
+        beforeEach(inject(function($rootScope, $controller) {
             $scope = $rootScope.$new();
             $controller('MyCtrl', {
                 $scope: $scope,
@@ -19,9 +19,7 @@ describe('Controllers', function() {
             $scope.$apply();
 
         }));
-            // it("progessTheBar", function() {
-            //     $scope.progessTheBar(100);
-            // });
+            
         it('should get data from api', inject(function($http,$scope,getData) {
             var $scope = {};
             /* Code Under Test */
