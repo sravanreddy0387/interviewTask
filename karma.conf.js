@@ -23,6 +23,14 @@ module.exports = function (config) {
         files: [
             'test/unit/_enterSpec.js'
         ],
+        //plugins
+         plugins : [
+        require('karma-webpack'),
+        'karma-chrome-launcher',
+        'karma-jasmine',
+        'karma-mocha',
+        'karma-sourcemap-loader'
+    ],
 
 
         // list of files to exclude
@@ -41,7 +49,7 @@ module.exports = function (config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['spec'],
+        //reporters: ['spec'],
 
 
         // web server port

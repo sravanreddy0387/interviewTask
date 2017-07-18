@@ -17,7 +17,7 @@ mServices.service('getData', function ($q, $window, $http) {
                 dataType: 'json',
                 method: 'GET'
             }).then(function (sucess) {
-                deferred.resolve(sucess);
+                deferred.resolve(sucess.data);
             }, function (error) {
                 deferred.reject(error);
             });

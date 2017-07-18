@@ -40196,21 +40196,21 @@ webpackJsonp([1],[
 
 	mCtrls.controller('MyCtrl', ["$scope", "getData", function ($scope, getData) {
 	    $scope.data = {};
-	    $scope.data.percentage = [];
+	    $scope.percentage = [];
 
 	    function calcBarPercentage(val, limit) {
 	        return Math.round((val / limit) * 100, 2);
 	    }
 	    getData.getApiData().then(function (data) {
-	        $scope.data = data.data;
+	        $scope.data = data;
 	        for (var i = 0; i < $scope.data.bars.length; i++) {
-	            $scope.data.percentage[i] = calcBarPercentage($scope.data.bars[i], $scope.data.limit);
+	            $scope.percentage.push(calcBarPercentage($scope.data.bars[i], $scope.data.limit)) ;
 	        }
 	    });
 	    $scope.selected = '0';
 	    $scope.progessTheBar = function (val) {
-	        $scope.data.percentage[$scope.selected] = $scope.data.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit);
-	        $scope.data.percentage[$scope.selected] <= 0 ? ($scope.data.percentage[$scope.selected] = 0) : ($scope.data.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit));
+	        $scope.percentage[$scope.selected] = $scope.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit);
+	        $scope.percentage[$scope.selected] <= 0 ? ($scope.percentage[$scope.selected] = 0) : ($scope.percentage[$scope.selected] + calcBarPercentage(val, $scope.data.limit));
 	    };
 	}]);
 
@@ -40287,7 +40287,7 @@ webpackJsonp([1],[
 	                dataType: 'json',
 	                method: 'GET'
 	            }).then(function (sucess) {
-	                deferred.resolve(sucess);
+	                deferred.resolve(sucess.data);
 	            }, function (error) {
 	                deferred.reject(error);
 	            });

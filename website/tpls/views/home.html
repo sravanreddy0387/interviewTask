@@ -1,5 +1,5 @@
 
-<div class="progress" ng-repeat="bar in data.percentage track by $index">
+<div class="progress" ng-repeat="bar in percentage track by $index">
     <div class="progress-bar"  id="progress{{$index+1}}" role="progressbar"  style="width:{{bar}}%" ng-class="bar>100 ? 'progress-bar-red':'progress-bar-normal'" >
      
     </div>
