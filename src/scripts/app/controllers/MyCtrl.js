@@ -4,7 +4,7 @@ var mCtrls = require('./_mCtrls');
 mCtrls.controller('MyCtrl', function ($scope, getData) {
     $scope.data = {};
     $scope.percentage = [];
-
+    $scope.test = 'test';
     function calcBarPercentage(val, limit) {
         return Math.round((val / limit) * 100, 2);
     }
